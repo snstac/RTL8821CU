@@ -14,9 +14,12 @@
 
 all: package
 
-.PHONY: package extract
+.PHONY: modules package extract
 
-package: 
+modules:
+	$(MAKE) -C src/ modules
+
+package: modules
 	dpkg-buildpackage -rfakeroot -uc -us
 
 extract:
@@ -30,4 +33,12 @@ clean:
 	rm -rf debian/*.substvars
 	rm -rf debian/files
 	rm -rf debian/*.debhelper.log
+	$(MAKE) -C src/ clean
+
+.PHONY: docker-start docker-build
+
+docker-build:
+	docker build -t rtl8821cu-dkms-dev .
 	
+docker-start: docker-build
+	docker run -d --name rtl8821cu-dkms-dev rtl8821cu-dkms-dev

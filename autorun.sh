@@ -4,12 +4,12 @@
 # invoke insmod with all arguments we got
 # and use a pathname, as insmod doesn't look in . by default
 
-TARGET_PATH=$(find /lib/modules/$(uname -r)/kernel/drivers/net/usb -type d)
+TARGET_PATH=$(find /lib/modules/"$(uname -r)"/kernel/drivers/net/usb -type d)
 if [ "$TARGET_PATH" = "" ]; then
 	TARGET_PATH=/lib/modules/$(uname -r)/kernel/drivers/net
 fi
 echo
-check=`lsmod | grep r8152`
+check=$(lsmod | grep r8152)
 if [ "$check" != "" ]; then
         echo "rmmod r8152"
         /sbin/rmmod r8152
@@ -18,15 +18,15 @@ fi
 echo "Build the module and install"
 echo "-------------------------------" >> log.txt
 date 1>>log.txt
-make $@ all 1>>log.txt || exit 1
-module=`ls src/*.ko`
+make "$@" all 1>>log.txt || exit 1
+module=$(ls src/*.ko)
 module=${module#src/}
 module=${module%.ko}
 
 echo "DEPMOD $(uname -r)"
-depmod `uname -r`
+depmod "$(uname -r)"
 echo "load module $module"
-modprobe $module
+modprobe "$module"
 
 is_update_initramfs=n
 distrib_list="ubuntu debian"
@@ -44,7 +44,7 @@ fi
 if [ "$is_update_initramfs" = "y" ]; then
 	if which update-initramfs >/dev/null ; then
 		echo "Updating initramfs. Please wait."
-		update-initramfs -u -k $(uname -r)
+		update-initramfs -u -k "$(uname -r)"
 	else
 		echo "update-initramfs: command not found"
 		exit 1
