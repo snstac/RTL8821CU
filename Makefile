@@ -20,7 +20,7 @@ modules:
 	$(MAKE) -C src/ modules
 
 package: modules
-	dpkg-buildpackage -rfakeroot -uc -us
+	dpkg-buildpackage -b -rfakeroot -us -uc
 
 extract:
 	dpkg-deb -e $(wildcard deb_dist/*latest_all.deb) deb_dist/extract
