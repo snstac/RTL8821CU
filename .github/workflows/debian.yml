@@ -21,11 +21,15 @@ jobs:
       - name: Create Debian Package
         run: make clean package
 
+
+      - name: Dir Listng
+        run: ls -al 
+
       - name: Upload Artifacts to GitHub
         uses: actions/upload-artifact@master
         with:
           name: artifact-deb
-          path: ../*.deb
+          path: *.deb
 
       - name: Create GitHub Release
         id: create_release
