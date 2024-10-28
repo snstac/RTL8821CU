@@ -22,3 +22,12 @@ package:
 extract:
 	dpkg-deb -e $(wildcard deb_dist/*latest_all.deb) deb_dist/extract
 	dpkg-deb -x $(wildcard deb_dist/*latest_all.deb) deb_dist/extract
+
+clean:
+	rm -rf deb_dist
+	rm -rf debian/*.debhelper
+	rm -rf debian/*.log
+	rm -rf debian/*.substvars
+	rm -rf debian/files
+	rm -rf debian/*.debhelper.log
+	
