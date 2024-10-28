@@ -22,7 +22,7 @@ jobs:
         run: make clean package
 
       - name: Dir Listng
-        run: ls -al 
+        run: ls -al . ../
 
       - name: Upload Artifacts to GitHub
         uses: actions/upload-artifact@master
