@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: RTL8821CU-DKMS
-Source: https://github.com/snstac/RTL8821CU
+Upstream-Name: rtl8821cu-dkms
+Source: https://github.com/snstac/rtl8821cu
 
 Files: *
 Copyright: 2021-2022 Realtek Semiconductor Corp.

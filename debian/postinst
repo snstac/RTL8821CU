@@ -5,18 +5,18 @@
 # Copyright (C) 2009 Alberto Milone
 # Copyright (C) 2020-2022 Deokgyu Yang
 # Copyright (C) 2024 Sensors & Signals LLC https://www.snstac.com/
-# This file is part of the RTL8821CU-DKMS package.
+# This file is part of the rtl8821cu-dkms package.
 
 set -e
 
-NAME=RTL8821CU
-PACKAGE_NAME=$NAME-DKMS
+NAME=rtl8821cu
+PACKAGE_NAME=$NAME-dkms
 DEB_NAME=$(echo $PACKAGE_NAME | sed 's,_,-,')
 CVERSION=`dpkg-query -W -f='${Version}' $DEB_NAME | awk -F "-" '{print $1}' | cut -d\: -f2`
 ARCH=`dpkg --print-architecture`
 
 msg() {
-	echo "RTL8821CU-DKMS: $@"
+	echo "rtl8821cu-dkms: $@"
 }
 
 dkms_configure () {
@@ -36,7 +36,7 @@ dkms_configure () {
 
 udev_configure() {
 	msg "Installing udev rules to prevent from loading built-in old driver..."
-	cp -f /tmp/RTL8821CU-DKMS/rules.d/50-usb-realtek-net.rules /etc/udev/rules.d/
+	cp -f /tmp/rtl8821cu-dkms/rules.d/50-usb-realtek-net.rules /etc/udev/rules.d/
 
 	msg "Reload udev..."
 	[ -x "$(command -v udevadm)" ] \
@@ -44,7 +44,7 @@ udev_configure() {
 		|| msg "udevadm not found. Please reboot to take effect."
 
 	msg "Remove temporary files..."
-	rm -rf /tmp/RTL8821CU-driver
+	rm -rf /tmp/rtl8821cu-driver
 }
 
 case "$1" in

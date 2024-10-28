@@ -9,15 +9,15 @@ VERSION	:= $(shell dpkg-parsechangelog -S Version | sed 's/-.*//' | sed 's/+pris
 	dh $@ --parallel --with dkms
 
 override_dh_install:
-	dh_install dkms.conf REALTEK_README.txt Makefile usr/src/RTL8821CU-$(VERSION)
-	dh_install src/* usr/src/RTL8821CU-$(VERSION)/src
+	dh_install dkms.conf REALTEK_README.txt Makefile usr/src/rtl8821cu-$(VERSION)
+	dh_install src/* usr/src/rtl8821cu-$(VERSION)/src
 
 override_dh_dkms:
 	dh_dkms -V $(VERSION)
 
 override_dh_fixperms:
 	dh_fixperms
-	find debian/RTL8821CU-DKMS/usr/src -type f -exec chmod -x {} \;
+	find debian/rtl8821cu-dkms/usr/src -type f -exec chmod -x {} \;
 
 override_dh_builddeb:
 	dh_builddeb -- -Zxz

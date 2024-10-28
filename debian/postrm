@@ -4,7 +4,7 @@
 set -e
 
 msg() {
-	echo "RTL8821CU-DKMS: $@"
+	echo "rtl8821cu-dkms: $@"
 }
 
 case "$1" in
