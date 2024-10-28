@@ -2,10 +2,7 @@ Source: rtl8821cu-dkms
 Section: contrib/kernel
 Priority: optional
 Maintainer: Greg Albrecht <gba@snstac.com>
-Build-Depends: debhelper (>= 13), 
-               dh-dkms,
-               dh-sequence-dkms,
-               dkms
+Build-Depends: debhelper (>= 13), dkms
 Standards-Version: 4.6.2.1
 Homepage: https://github.com/snstac/rtl8821cu
 
